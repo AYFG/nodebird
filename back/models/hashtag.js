@@ -5,8 +5,10 @@ module.exports = class Hashtag extends Model {
   static init(sequelize) {
     return super.init(
       {
-        type: DataTypes.STRING(20),
-        allowNull: false,
+        name: {
+          type: DataTypes.STRING(20),
+          allowNull: false,
+        },
       },
       {
         modelName: "Hashtag",
