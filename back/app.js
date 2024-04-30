@@ -45,7 +45,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(morgan("dev"));
 app.use(
   cors({
-    origin: ["http://localhost:3060", "woodbird.shop"],
+    origin: ["http://localhost:3060", "http://woodbird.shop"],
     credentials: true,
   })
 );
