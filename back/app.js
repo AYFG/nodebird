@@ -45,7 +45,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(morgan("dev"));
 app.use(
   cors({
-    origin: ["http://localhost:3060", "nodebird.com", "http://43.200.13.148"],
+    origin: ["http://localhost:3060", "woodbird.shop"],
     credentials: true,
   })
 );
@@ -60,6 +60,11 @@ app.use(
     saveUninitialized: false,
     resave: false,
     secret: process.env.COOKIE_SECRET,
+    cookie: {
+      httpOnly: true,
+      secure: false,
+      domain: process.env.NODE_ENV === "production" && ".woodbird.shop",
+    },
   })
 );
 app.use(passport.initialize());
