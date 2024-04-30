@@ -39,16 +39,22 @@ if (process.env.NODE_ENV === "production") {
   app.use(morgan("combined"));
   app.use(hpp());
   app.use(helmet());
+  app.use(
+    cors({
+      origin: ["http://woodbird.shop"],
+      credentials: true,
+    })
+  );
 } else {
   app.use(morgan("dev"));
+  app.use(
+    cors({
+      origin: ["http://localhost:3060"],
+      credentials: true,
+    })
+  );
 }
 app.use(morgan("dev"));
-app.use(
-  cors({
-    origin: ["http://localhost:3060", "http://woodbird.shop"],
-    credentials: true,
-  })
-);
 
 // 운영체제마다 경로설정이 다르기 때문에 path.join 사용
 app.use("/", express.static(path.join(__dirname, "uploads")));
