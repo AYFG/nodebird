@@ -5,6 +5,7 @@ const path = require("path");
 const fs = require("fs");
 const multerS3 = require("multer-s3");
 const AWS = require("aws-sdk");
+const { S3Client } = require("@aws-sdk/client-s3");
 
 const { Post, User, Image, Comment, Hashtag } = require("../models");
 const { isLoggedIn } = require("./middlewares");
@@ -16,15 +17,17 @@ try {
   fs.mkdirSync("uploads");
 }
 
-AWS.config.update({
-  accessKeyId: process.env.S3_ACCESS_KEY_ID,
-  secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+const s3 = new S3Client({
   region: "ap-northeast-2",
+  credentials: {
+    accessKeyId: process.env.S3_ACCESS_KEY,
+    secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+  },
 });
 const upload = multer({
   storage: multerS3({
-    s3: new AWS.S3(),
-    bucket: "react-nodebird",
+    s3: s3,
+    bucket: "react-woodbird-s3",
     key(req, file, cb) {
       cb(null, `original/${Date.now()}_${path.basename(file.originalname)}`);
     },
