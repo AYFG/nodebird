@@ -3,6 +3,8 @@ const router = express.Router();
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
+const multerS3 = require("multer-s3");
+const AWS = require("aws-sdk");
 
 const { Post, User, Image, Comment, Hashtag } = require("../models");
 const { isLoggedIn } = require("./middlewares");
@@ -14,17 +16,17 @@ try {
   fs.mkdirSync("uploads");
 }
 
+AWS.config.update({
+  accessKeyId: process.env.S3_ACCESS_KEY_ID,
+  secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+  region: "ap-northeast-2",
+});
 const upload = multer({
-  storage: multer.diskStorage({
-    destination(req, file, done) {
-      // uploads 폴더에 이미지를 두겠다.
-      done(null, "uploads");
-    },
-    filename(req, file, done) {
-      // test.png
-      const ext = path.extname(file.originalname); //확장자 추출(.png)
-      const basename = path.basename(file.originalname, ext); // test
-      done(null, basename + "_" + new Date().getTime() + ext); // test151717281.png
+  storage: multerS3({
+    s3: new AWS.S3(),
+    buckey: "react-woodbird-s3",
+    key(req, file, cb) {
+      cb(null, `original/${Data.now()}_${path.basename(file.originalname)}`);
     },
   }),
   limits: { fileSize: 20 * 1024 * 1024 }, // 20MB
@@ -102,7 +104,7 @@ router.post(
     // POST post/images
     try {
       console.log(req.files);
-      res.json(req.files.map((v) => v.filename));
+      res.json(req.files.map((v) => v.location));
     } catch (err) {
       console.error(err);
       next(err);
