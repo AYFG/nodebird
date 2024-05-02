@@ -20,7 +20,7 @@ const PostImages = ({ images }) => {
         <img
           style={{ cursor: "pointer" }}
           role="presentation"
-          src={`${backUrl}/${images[0].src}`}
+          src={images[0].src}
           alt={images[0].src}
           onClick={onZoom}
         />
@@ -37,8 +37,8 @@ const PostImages = ({ images }) => {
             display: "inline-block",
           }}
           role="presentation"
-          src={`http://localhost:3065/${images[0].src}`}
-          alt={`http://localhost:3065/${images[0].src}`}
+          src={images[0].src}
+          alt={images[0].src}
           onClick={onZoom}
         />
         <img
@@ -47,8 +47,8 @@ const PostImages = ({ images }) => {
             display: "inline-block",
           }}
           role="presentation"
-          src={`http://localhost:3065/${images[1].src}`}
-          alt={`http://localhost:3065/${images[1].src}`}
+          src={images[1].src}
+          alt={images[1].src}
           onClick={onZoom}
         />
         {showImagesZoom && <ImagesZoom images={images} onClose={onClose} />}
@@ -63,8 +63,8 @@ const PostImages = ({ images }) => {
           role="presentation"
           style={{ cursor: "pointer" }}
           width="50%"
-          src={`http://localhost:3065/${images[0].src}`}
-          alt={`http://localhost:3065/${images[0].src}`}
+          src={images[0].src}
+          alt={images[0].src}
           onClick={onZoom}
         />
         <div
