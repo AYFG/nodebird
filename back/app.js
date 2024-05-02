@@ -41,7 +41,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(helmet());
   app.use(
     cors({
-      origin: ["http://woodbird.shop"],
+      origin: "http://woodbird.shop",
       credentials: true,
     })
   );
@@ -49,7 +49,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(morgan("dev"));
   app.use(
     cors({
-      origin: ["http://localhost:3060"],
+      origin: "http://localhost:3060",
       credentials: true,
     })
   );
