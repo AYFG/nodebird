@@ -24,7 +24,7 @@ AWS.config.update({
 const upload = multer({
   storage: multerS3({
     s3: new AWS.S3(),
-    buckey: "react-woodbird-s3",
+    bucket: "react-woodbird-s3",
     key(req, file, cb) {
       cb(null, `original/${Data.now()}_${path.basename(file.originalname)}`);
     },
