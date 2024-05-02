@@ -104,7 +104,9 @@ router.post(
     // POST post/images
     try {
       console.log(req.files);
-      res.json(req.files.map((v) => v.location));
+      res.json(
+        req.files.map((v) => v.location.replace(/\/original\//, "/thumb/"))
+      );
     } catch (err) {
       console.error(err);
       next(err);
