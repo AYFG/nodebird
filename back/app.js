@@ -54,7 +54,6 @@ if (process.env.NODE_ENV === "production") {
     })
   );
 }
-console.log(cors);
 app.use(morgan("dev"));
 
 // 운영체제마다 경로설정이 다르기 때문에 path.join 사용
@@ -89,6 +88,6 @@ app.use("/posts", postsRouter);
 app.use("/user", userRouter);
 app.use("/hashtag", hashtagRouter);
 
-app.listen(80, () => {
+app.listen(3065, () => {
   console.log("서버 실행중");
 });
