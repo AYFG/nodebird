@@ -41,7 +41,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(helmet());
   app.use(
     cors({
-      origin: "http://woodbird.shop",
+      origin: "https://woodbird.shop",
       credentials: true,
     })
   );
@@ -49,7 +49,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(morgan("dev"));
   app.use(
     cors({
-      origin: "http://localhost:3060",
+      origin: true,
       credentials: true,
     })
   );
@@ -69,7 +69,7 @@ app.use(
     secret: process.env.COOKIE_SECRET,
     cookie: {
       httpOnly: true,
-      secure: false,
+      secure: true,
       domain: process.env.NODE_ENV === "production" && ".woodbird.shop",
     },
   })
