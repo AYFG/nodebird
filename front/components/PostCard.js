@@ -36,7 +36,7 @@ export const PostCard = ({ post }) => {
       return alert("로그인이 필요합니다.");
     }
     return dispatch({
-      type: LIKE_POST_REQUEST,
+      type: UNLIKE_POST_REQUEST,
       data: post.id,
     });
   }, [id]);
@@ -45,7 +45,7 @@ export const PostCard = ({ post }) => {
       return alert("로그인이 필요합니다.");
     }
     return dispatch({
-      type: UNLIKE_POST_REQUEST,
+      type: LIKE_POST_REQUEST,
       data: post.id,
     });
   }, [id]);
