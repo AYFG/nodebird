@@ -33,7 +33,7 @@ const PostCardContent = ({
     <div>
       {editMode ? (
         <>
-          <textArea value={postData} oNChange={onChangeText} />
+          <textArea value={postData} onChange={onChangeText} />
           <ButtonGroup>
             <Button
               loading={updatePostLoading}
