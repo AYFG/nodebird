@@ -66,9 +66,9 @@ const User = () => {
           />
           <meta
             property="og:image"
-            content="https://nodebird.com/favicon.ico"
+            content="http://woodbird.shop/favicon.ico"
           />
-          <meta property="og:url" content={`https://nodebird.com/user/${id}`} />
+          <meta property="og:url" content={`http://woodbird.shop/user/${id}`} />
         </Head>
       )}
       {userInfo ? (

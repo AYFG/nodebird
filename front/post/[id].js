@@ -30,10 +30,10 @@ const Post = () => {
           content={`${
             singlePost.Images[0]
               ? singlePost.Images[0].src
-              : "https://nodebird.com/favicon.ico"
+              : "http://woodbird.shop/favicon.ico"
           }님의 게시글`}
         />
-        <meta property="og:url" content={`https://nodebird.com/post/${id}`} />
+        <meta property="og:url" content={`http://woodbird.shop/post/${id}`} />
       </Head>
       <PostCard post={singlePost} />
     </AppLayout>
