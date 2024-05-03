@@ -54,6 +54,7 @@ if (process.env.NODE_ENV === "production") {
     })
   );
 }
+console.log(cors);
 app.use(morgan("dev"));
 
 // 운영체제마다 경로설정이 다르기 때문에 path.join 사용
