@@ -19,7 +19,7 @@ const User = () => {
   const { mainPosts, hasMorePosts, loadPostsLoading } = useSelector(
     (state) => state.post
   );
-  const { userInfo } = useSelector((state) => state.user);
+  const { userInfo, me } = useSelector((state) => state.user);
 
   useEffect(() => {
     const onScroll = () => {
@@ -71,7 +71,7 @@ const User = () => {
           <meta property="og:url" content={`http://woodbird.shop/user/${id}`} />
         </Head>
       )}
-      {userInfo ? (
+      {userInfo && userInfo.id !== me?.id ? (
         <Card
           actions={[
             <div key="twit">
@@ -97,8 +97,8 @@ const User = () => {
           />
         </Card>
       ) : null}
-      {mainPosts.map((post) => (
-        <PostCard key={post.id} post={post} />
+      {mainPosts.map((c) => (
+        <PostCard key={c.id} post={c} />
       ))}
     </AppLayout>
   );
