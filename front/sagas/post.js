@@ -34,6 +34,9 @@ import {
   LOAD_USER_POSTS_REQUEST,
   LOAD_USER_POSTS_SUCCESS,
   LOAD_USER_POSTS_FAILURE,
+  UPDATE_POST_REQUEST,
+  UPDATE_POST_SUCCESS,
+  UPDATE_POST_FAILURE,
 } from "../reducer/post";
 import { ADD_POST_TO_ME, REMOVE_POST_OF_ME } from "../reducer/user";
 
@@ -216,6 +219,25 @@ function* addPost(action) {
   }
 }
 
+function updatePostAPI(data) {
+  return axios.patch(`/post/${data.PostId}`, data);
+}
+
+function* updatePost(action) {
+  try {
+    const result = yield call(updatePostAPI, action.data);
+    yield put({
+      type: UPDATE_POST_SUCCESS,
+      data: result.data,
+    });
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: UPDATE_POST_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
 function removePostAPI(data) {
   return axios.delete(`/post/${data}`, data);
 }
@@ -288,8 +310,11 @@ function* watchAddPost() {
 function* watchAddComment() {
   yield takeLatest(ADD_COMMENT_REQUEST, addComment);
 }
-function* watchRemoveComment() {
+function* watchRemovePost() {
   yield takeLatest(REMOVE_POST_REQUEST, removePost);
+}
+function* watchUpdatePost() {
+  yield takeLatest(UPDATE_POST_REQUEST, updatePost);
 }
 
 export default function* postSaga() {
@@ -303,7 +328,8 @@ export default function* postSaga() {
     fork(watchLoadHashtagPosts),
     fork(watchLoadUserPosts),
     fork(watchLoadPosts),
-    fork(watchRemoveComment),
+    fork(watchUpdatePost),
+    fork(watchRemovePost),
     fork(watchAddComment),
   ]);
 }

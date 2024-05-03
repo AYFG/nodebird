@@ -73,6 +73,7 @@ const User = () => {
       )}
       {userInfo && userInfo.id !== me?.id ? (
         <Card
+          style={{ marginBottom: 20 }}
           actions={[
             <div key="twit">
               짹짹

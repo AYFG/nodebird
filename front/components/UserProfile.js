@@ -42,7 +42,13 @@ export const UserProfile = () => {
       ]}
     >
       <Card.Meta
-        avatar={<Avatar>{me.nickname[0]}</Avatar>}
+        avatar={
+          <Link href={`/user/${me.id}`} prefetch={false}>
+            <a>
+              <Avatar>{me.nickname[0]}</Avatar>
+            </a>
+          </Link>
+        }
         title={me.nickname}
       ></Card.Meta>
       <Button onClick={onLogOut} loading={logOutLoading}>
