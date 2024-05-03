@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { useCallback, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { UPDATE_POST_REQUEST } from "../reducer/post";
+import ButtonGroup from "antd/lib/button/button-group";
+import { Button } from "antd";
 
 const PostCardContent = ({
   postData,
