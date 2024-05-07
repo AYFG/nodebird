@@ -1,3 +1,3 @@
 # nodebird
 
-[woodbird](woodbird.shop)
+[woodbird](https://woodbird.shop)
