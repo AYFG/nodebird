@@ -35,7 +35,7 @@ db.sequelize
   .catch(console.error);
 passportConfig();
 
-app.set("truse proxy", 1);
+app.set("trust proxy", 1);
 if (process.env.NODE_ENV === "production") {
   app.use(morgan("combined"));
   app.use(hpp());
@@ -50,7 +50,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(morgan("dev"));
   app.use(
     cors({
-      origin: true,
+      origin: "http://localhost:3060",
       credentials: true,
     })
   );

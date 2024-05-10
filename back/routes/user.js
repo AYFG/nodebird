@@ -226,7 +226,7 @@ router.post("/", isNotLoggedIn, async (req, res, next) => {
       nickname: req.body.nickname,
       password: hashedPassword,
     });
-    res.setHeader("Access-Control-Allow-Origin", "http://woodbird.shop");
+    res.setHeader("Access-Control-Allow-Origin", "https://woodbird.shop");
     res.status(201).send("ok");
   } catch (error) {
     console.error(error);
